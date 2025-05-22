@@ -9,7 +9,7 @@ const register = async (req, res) => {
     if (existing) return res.status(400).json({ message: 'Teacher already exists' });
 
     const hashedPassword = await bcrypt.hash(Password, 10);
-    const teacher = await Teacher.create({ Name, Subject, Password: hashedPassword });
+    await Teacher.create({ Name, Subject, Password: hashedPassword });
 
     res.status(201).json({ message: 'Teacher registered successfully' });
   } catch (err) {
